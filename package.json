@@ -1,0 +1,19 @@
+{
+  "name": "@socialkardia/harvester",
+  "version": "1.0.0",
+  "description": "The system by which socialkardia harvests communications",
+  "main": "tmp/source/index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-register source/**/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socialkardia/harvester.js.git"
+  },
+  "author": "Kurtis Rainbolt-Greene (@krainboltgreene) <me@kurtisrainboltgreene.name>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/socialkardia/harvester.js/issues"
+  },
+  "homepage": "https://github.com/socialkardia/harvester.js#readme"
+}
