@@ -4,7 +4,15 @@
   "description": "The system by which socialkardia harvests communications",
   "main": "tmp/source/index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register source/**/test.js"
+    "postinstall": "npm run build",
+    "start": "npm-run-all --parallel watch:lint watch:test",
+    "build": "babel --ignore '**/test.js' './source/' -d './transpiled/source/'",
+    "lint": "eslint './source/'",
+    "test": "mocha --compilers js:babel-register './source/**/test.js'",
+    "watch": "npm-run-all --parallel watch:build watch:lint watch:test",
+    "watch:build": "chokidar './source/' --initial --command 'npm run build --silent'",
+    "watch:lint": "chokidar './source/' --initial --command 'npm run lint --silent'",
+    "watch:test": "chokidar  './source/' --initial --command 'npm run test --silent'"
   },
   "repository": {
     "type": "git",
@@ -15,5 +23,38 @@
   "bugs": {
     "url": "https://github.com/socialkardia/harvester.js/issues"
   },
-  "homepage": "https://github.com/socialkardia/harvester.js#readme"
+  "homepage": "https://github.com/socialkardia/harvester.js#readme",
+  "engines": {
+    "node": "^6",
+    "npm": "^3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6",
+    "babel": "^6",
+    "babel-cli": "^6",
+    "babel-core": "^6",
+    "babel-plugin-transform-es2015-destructuring": "^6",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6",
+    "babel-plugin-transform-exponentiation-operator": "^6",
+    "babel-plugin-transform-export-extensions": "^6",
+    "babel-plugin-transform-object-rest-spread": "^6",
+    "chai": "^3",
+    "chakram": "^1",
+    "chance": "^1",
+    "chokidar-cli": "^1",
+    "eslint": "^2",
+    "eslint-plugin-babel": "^3",
+    "eslint-plugin-immutable": "^1",
+    "eslint-plugin-import": "^1",
+    "eslint-plugin-mocha": "^3",
+    "eslint-plugin-node": "^1",
+    "greenkeeper": "^2",
+    "mocha": "^2",
+    "npm": "^3",
+    "npm-run-all": "^2",
+    "npm-check-updates": "^2"
+  },
+  "dependencies": {
+    "ramda": "0.21.0"
+  }
 }
