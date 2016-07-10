@@ -21,7 +21,7 @@ module.exports = {
     "block-spacing": "error",
     "brace-style": "error",
     "callback-return": "error",
-    "camelcase": "error",
+    "camelcase": "warn",
     "comma-dangle": "error",
     "comma-spacing": "error",
     "comma-style": "error",
@@ -286,4 +286,3 @@ module.exports = {
     "node/shebang": "error"
   }
 }
-
