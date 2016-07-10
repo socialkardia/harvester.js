@@ -8,6 +8,7 @@
     "start": "npm-run-all --parallel watch:lint watch:test",
     "build": "babel --ignore '**/test.js' './source/' -d './transpiled/source/'",
     "lint": "eslint './source/'",
+    "script": "babel-node",
     "test": "mocha --compilers js:babel-register './source/**/test.js'",
     "watch": "npm-run-all --parallel watch:build watch:lint watch:test",
     "watch:build": "chokidar './source/' --initial --command 'npm run build --silent'",
