@@ -1,16 +1,19 @@
-// : Array where [RethinkDBClient, RethinkDBConnection] -> Function
-const next = ([client, connection]) => (raw) => {
-  return client
-    .table("messages")
-    .insert({raw})
-    .run(connection)
+import database from "../database"
+import adapters from "../adapters"
+
+// : Client -> Provider -> Raw -> Promise
+const next = (provider) => (raw) => {
+  return database
+    .table(provider)
+    .insert(adapters[provider](raw))
     .then(() => console.log("Insert"))
+    .catch((error) => console.error(error))
 }
 
-// : RethinkDBConnection -> Producer
-export default function heartbeat ([client, connection]) {
+// : Provider -> Producer
+export default function heartbeat (provider) {
   return {
-    next: next([client, connection]),
+    next: next(provider),
     error (data) {
       console.log({data})
     },
